@@ -13,7 +13,7 @@ import {NewTrainingComponent} from './training/new-training/new-training.compone
 import {PastTrainingComponent} from './training/past-training/past-training.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {FormsModule, NgForm} from "@angular/forms";
+import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import {FormsModule, NgForm} from "@angular/forms";
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
