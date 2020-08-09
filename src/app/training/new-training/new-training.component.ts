@@ -13,16 +13,22 @@ import {Subscription} from "rxjs";
 export class NewTrainingComponent implements OnInit, OnDestroy {
 
   exercises: Exercise[];
-  exerciseSubsription: Subscription;
+  isLoading: boolean = false;
+  private exerciseSubsription: Subscription;
 
   constructor(private trainingService: TrainingService,
               private db: AngularFirestore) {
   }
 
   ngOnInit(): void {
-    this.exerciseSubsription = this.trainingService.exercisesChanged.subscribe(
-      exercises => (this.exercises = exercises)
-    );
+    this.isLoading = true;
+    this.exerciseSubsription = this.trainingService.exercisesChanged
+      .subscribe(
+        exercises => {
+          this.exercises = exercises;
+          this.isLoading = false;
+        }
+      );
     this.trainingService.fetchAvaliableExercises();
   }
 

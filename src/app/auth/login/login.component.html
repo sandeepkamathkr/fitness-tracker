@@ -23,7 +23,8 @@
       <mat-error >Password cannot be empty</mat-error>
       <mat-hint >Please enter a valid Password</mat-hint>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
+    <button *ngIf="!isLoading" type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
   </form>
 </section>
 
