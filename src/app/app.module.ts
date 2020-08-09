@@ -13,14 +13,15 @@ import {NewTrainingComponent} from './training/new-training/new-training.compone
 import {PastTrainingComponent} from './training/past-training/past-training.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
-import { HeaderComponent } from './navigation/header/header.component';
-import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HeaderComponent} from './navigation/header/header.component';
+import {SidenavListComponent} from './navigation/sidenav-list/sidenav-list.component';
 import {StopTrainingComponent} from "./training/current-training/stop-training.component";
 import {AuthService} from "./auth/auth.service";
 import {TrainingService} from "./training/training.service";
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 import {environment} from "../environments/environment";
 
 @NgModule({
@@ -46,7 +47,8 @@ import {environment} from "../environments/environment";
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   entryComponents: [StopTrainingComponent],
   providers: [AuthService,TrainingService],
