@@ -19,9 +19,9 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
   private loadingSubscription: Subscription;
 
   constructor(
-              private trainingService: TrainingService,
-              private db: AngularFirestore,
-              private uiService: UIService
+    private trainingService: TrainingService,
+    private db: AngularFirestore,
+    private uiService: UIService
   ) {
   }
 
@@ -50,7 +50,11 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.exerciseSubscription.unsubscribe();
-    this.loadingSubscription.unsubscribe();
+    if (this.exerciseSubscription) {
+      this.exerciseSubscription.unsubscribe();
+    }
+    if (this.loadingSubscription) {
+      this.loadingSubscription.unsubscribe();
+    }
   }
 }

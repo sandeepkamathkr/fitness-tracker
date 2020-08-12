@@ -7,7 +7,7 @@ import {TrainingService} from "./training.service";
   templateUrl: './training.component.html',
   styleUrls: ['./training.component.css']
 })
-export class TrainingComponent implements OnInit,OnDestroy {
+export class TrainingComponent implements OnInit, OnDestroy {
   exerciseSubscription: Subscription;
   onGoingTraining: boolean = false;
 
@@ -16,15 +16,17 @@ export class TrainingComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
     this.exerciseSubscription = this.trainingService.exerciseChanged.subscribe(exercise => {
-      if(exercise){
+      if (exercise) {
         this.onGoingTraining = true;
-      }else{
+      } else {
         this.onGoingTraining = false;
       }
     });
   }
 
   ngOnDestroy() {
-    this.exerciseSubscription.unsubscribe();
+    if (this.exerciseSubscription) {
+      this.exerciseSubscription.unsubscribe();
+    }
   }
 }
