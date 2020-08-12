@@ -4,7 +4,6 @@ import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import {AngularFireAuth} from "angularfire2/auth"
 import {TrainingService} from "../training/training.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {UIService} from "../shared/ui.service";
 
 @Injectable()
@@ -15,7 +14,6 @@ export class AuthService {
   constructor(private router: Router,
               private afAuth: AngularFireAuth,
               private trainingService: TrainingService,
-              private snackbar: MatSnackBar,
               private uiService: UIService) {
   }
 
@@ -42,9 +40,7 @@ export class AuthService {
       })
       .catch(error => {
         this.uiService.loadingStateChanged.next(false);
-        this.snackbar.open(error.message, null, {
-          duration: 3000
-        })
+        this.uiService.showSnackbar(error.message, null, 3000);
       });
   }
 
@@ -53,22 +49,16 @@ export class AuthService {
     this.afAuth.auth.signInWithEmailAndPassword(authData.email, authData.password)
       .then(result => {
         this.uiService.loadingStateChanged.next(false);
-        this.snackbar.open("Successfully Authenticated", null, {
-          politeness: "polite",
-          duration: 2000
-        });
+        this.uiService.showSnackbar("Successfully Authenticated", null, 3000);
       }).catch(error => {
       this.uiService.loadingStateChanged.next(false);
-      this.snackbar.open(error.message, null, {
-        duration: 3000
-      })
+      this.uiService.showSnackbar(error.message, null, 3000);
     });
   }
 
   logout() {
     this.afAuth.auth.signOut();
   }
-
 
   isAuth() {
     return this.isAuthenticated;
