@@ -9,10 +9,10 @@ import {Subscription} from "rxjs";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit,OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   isLoading: boolean = false;
-  private loadingSub : Subscription;
+  private loadingSub: Subscription;
 
   constructor(private authService: AuthService,
               private uiService: UIService) {
@@ -34,6 +34,8 @@ export class LoginComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy() {
-    this.loadingSub.unsubscribe();
+    if (this.loadingSub) {
+      this.loadingSub.unsubscribe();
+    }
   }
 }
