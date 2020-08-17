@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {UIService} from "../../shared/ui.service";
-import {Observable, Subscription} from "rxjs";
+import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import * as fromRoot from '../../app.reducer';
 
@@ -14,7 +14,6 @@ import * as fromRoot from '../../app.reducer';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoading$: Observable<boolean>;
-  private loadingSub: Subscription;
 
   constructor(private authService: AuthService,
               private uiService: UIService,
