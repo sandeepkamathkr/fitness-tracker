@@ -1,4 +1,4 @@
-import {START_LOADING, STOP_LOADING, UiActions} from "./ui.action";
+import {START_LOADING, STOP_LOADING, UiActions} from "./ui.actions";
 
 export interface State{
   isLoading: boolean;
